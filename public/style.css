@@ -12,9 +12,12 @@ body {
  font-family: 'Montserrat', sans-serif;
 }
 
+h1,h2,h3,h4,h,h6 {
+ color: #212529;
+}
+
 .container {
  width: 100%;
  max-width: 900px;
  margin: 0 auto;
- padding: 32px 0;
 }

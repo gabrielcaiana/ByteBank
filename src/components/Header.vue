@@ -2,6 +2,9 @@
   <header class="header">
     <div class="container">
       <ul class="header__list">
+       <li class="header__list__logo">
+        ByteBank
+       </li>
         <li class="header__list__item">
           <router-link
             class="header__list__item__link"
@@ -36,9 +39,18 @@ export default {};
   background-color: #1d3557;
   width: 100%;
   padding: 24px 0;
+  margin-bottom: 32px;
 
   &__list {
     display: flex;
+    align-items: center;
+
+    &__logo {
+     font-size: 24px;
+     color: #fff;
+     font-weight: bold;
+     margin-right: 32px;
+    }
 
     &__item {
       margin-right: 16px;
@@ -51,7 +63,7 @@ export default {};
         }
 
         &--active {
-          color: #a8dadc;
+          color: #06d6a0;
           font-weight: bold;
         }
       }
