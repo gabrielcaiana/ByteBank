@@ -2,9 +2,9 @@
   <header class="header">
     <div class="container">
       <ul class="header__list">
-       <li class="header__list__logo">
-        ByteBank
-       </li>
+        <li class="header__list__logo">
+          <h1 class="header__list__logo--h1">ByteBank</h1>
+        </li>
         <li class="header__list__item">
           <router-link
             class="header__list__item__link"
@@ -46,10 +46,12 @@ export default {};
     align-items: center;
 
     &__logo {
-     font-size: 24px;
-     color: #fff;
-     font-weight: bold;
-     margin-right: 32px;
+      &--h1 {
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        margin-right: 32px;
+      }
     }
 
     &__item {

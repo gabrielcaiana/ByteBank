@@ -1,23 +1,28 @@
 * {
- margin: -0;
- padding: 0;
+  margin: -0;
+  padding: 0;
 }
 
-a,ul {
- text-decoration: none;
- list-style: none;
+h1,
+h2,
+h3,
+h4,
+h,
+h6 {
+  color: #212529;
+  font-family: "Montserrat", sans-serif;
 }
 
-body {
- font-family: 'Montserrat', sans-serif;
-}
-
-h1,h2,h3,h4,h,h6 {
- color: #212529;
+a,
+ul,
+p {
+  text-decoration: none;
+  list-style: none;
+  font-family: "Roboto", sans-serif;
 }
 
 .container {
- width: 100%;
- max-width: 900px;
- margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
