@@ -1,5 +1,6 @@
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Managers from "../views/Managers.vue";
+import NovoUsuario from "../views/NovoUsuario"
 
 export default [
   {
@@ -8,8 +9,13 @@ export default [
     component: Home,
   },
   {
-    path: "/about",
-    name: "about",
-    component: About,
+    path: "/managers",
+    name: "managers",
+    component: Managers,
+  },
+  {
+    path: "/cadastre-se",
+    name: "novo.usuario",
+    component: NovoUsuario,
   },
 ];

@@ -3,7 +3,14 @@
     <div class="container">
       <ul class="header__list">
         <li class="header__list__logo">
-          <h1 class="header__list__logo--h1">ByteBank</h1>
+          <router-link
+            class="header__list__item__link"
+            active-class="header__list__item__link--active"
+            exact
+            to="/"
+          >
+            <h1 class="header__list__logo--h1">ByteBank</h1>
+          </router-link>
         </li>
         <li class="header__list__item">
           <router-link
@@ -20,9 +27,9 @@
             class="header__list__item__link"
             active-class="header__list__item__link--active"
             exact
-            to="/about"
+            to="/managers"
           >
-            About
+            Gerentes
           </router-link>
         </li>
       </ul>
