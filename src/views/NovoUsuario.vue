@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form">
+    <form class="form" @submit.prevent="enviarFormulario">
       <h1 class="form__title">Cadastre-se</h1>
       <div class="form__form-group">
         <label class="form__form-group__label" for="nome">Nome</label>
@@ -9,6 +9,7 @@
           type="text"
           id="nome"
           placeholder="Digite o seu nome"
+          v-model="usuario.nome"
         />
       </div>
 
@@ -19,6 +20,7 @@
           type="email"
           id="email"
           placeholder="Digite o seu email"
+          v-model="usuario.email"
         />
       </div>
 
@@ -29,6 +31,7 @@
           type="password"
           id="password"
           placeholder="Digite sua senha"
+          v-model="usuario.password"
         />
       </div>
 
@@ -38,7 +41,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return {
+      usuario: {
+        nome: '',
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    enviarFormulario() {
+      console.log(this.usuario)
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
