@@ -46,13 +46,13 @@
 export default {
   methods: {
     efetuarLogout() {
-      localStorage.removeItem("token");
+      this.$store.commit("LOGOUT_USER")
       this.$router.push({ name: "login" });
     },
   },
   computed: {
     usuarioLogado() {
-     return Boolean(localStorage.getItem("token"));
+     return Boolean(this.$store.state.token);
     },
   },
 };

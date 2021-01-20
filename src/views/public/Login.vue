@@ -50,18 +50,8 @@ export default {
   },
   methods: {
     efetuarLogin() {
-      this.$http
-        .post("auth/login", this.usuario)
-        .then((response) => {
-          this.$store.commit("defineUserLogin", {
-            token: response.data.access_token,
-            usuario: response.data.user,
-          });
-          this.$router.push({ name: "home" });
-        })
-        .catch((err) => {
-          this.usuario.message = err.response.data.message;
-        });
+      this.$store.dispatch("efetuarLogin", this.usuario)
+      .then(() => this.$router.push({name: 'home'}))
     },
   },
 };
