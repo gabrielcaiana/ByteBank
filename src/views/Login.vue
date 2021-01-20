@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form" @submit.prevent="">
+    <form class="form" @submit.prevent="efetuarLogin">
       <h1 class="form__title">Faça o login</h1>
 
       <div class="form__form-group">
@@ -21,26 +21,46 @@
           type="password"
           id="password"
           placeholder="Digite sua senha"
-          v-model="usuario.password"
+          v-model="usuario.senha"
         />
       </div>
 
       <button class="form__login" type="submit">Entrar</button>
 
       <router-link :to="{ name: 'novo-usuario' }">
-        <p class="form__register">Ainda não tem uma conta? <b>cadastre-se agora mesmo!</b></p>
+        <p class="form__register">
+          Ainda não tem uma conta? <b>cadastre-se agora mesmo!</b>
+        </p>
       </router-link>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
- data() {
-  return {
-   
-  }
- }
+  data() {
+    return {
+      usuario: {
+        email: "",
+        senha: "",
+      },
+    };
+  },
+  methods: {
+    efetuarLogin() {
+      axios
+        .post("http://localhost:8000/auth/login", this.usuario)
+        .then((response) => {
+          console.log(response);
+          localStorage.setItem('token', response.data.access_token)
+          this.$router.push({name: 'managers'})
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
@@ -90,9 +110,9 @@ export default {
   }
 
   &__register {
-   font-size: 16px;
-   margin-top: 32px;
-   color: #1d3557;
+    font-size: 16px;
+    margin-top: 32px;
+    color: #1d3557;
   }
 }
 </style>

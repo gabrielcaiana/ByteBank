@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="container">
+    <div class="container content">
       <ul class="header__list">
         <li class="header__list__logo">
           <router-link
@@ -33,15 +33,41 @@
           </router-link>
         </li>
       </ul>
+      <a class="content__logout" href="#" @click.prevent="efetuarLogout"
+        >Logout</a
+      >
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    efetuarLogout() {
+      localStorage.removeItem("token")
+      this.$router.push({name: 'login'})
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+.content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  &__logout {
+    color: #fff;
+    position: absolute;
+    right: 0;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
 .header {
   background-color: #1d3557;
   width: 100%;

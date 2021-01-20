@@ -31,7 +31,7 @@
           type="password"
           id="password"
           placeholder="Digite sua senha"
-          v-model="usuario.password"
+          v-model="usuario.senha"
         />
       </div>
 
@@ -52,7 +52,7 @@ export default {
       usuario: {
         nome: "",
         email: "",
-        password: "",
+        senha: "",
       },
     };
   },
@@ -60,7 +60,10 @@ export default {
     enviarFormulario() {
       axios
         .post("http://localhost:8000/auth/register", this.usuario)
-        .then((response) => console.log(response))
+        .then((response) => {
+          console.log(response)
+          this.$router.push({name: 'login'})
+        })
         .catch((err) => console.log(err));
     },
   },
