@@ -43,13 +43,11 @@
 </template>
 
 <script>
+import { logoutMixin } from "@/mixins";
 export default {
-  methods: {
-    efetuarLogout() {
-      this.$store.commit("LOGOUT_USER")
-      this.$router.push({ name: "login" });
-    },
-  },
+  mixins: [
+    logoutMixin
+  ],
   computed: {
     usuarioLogado() {
      return Boolean(this.$store.state.token);
