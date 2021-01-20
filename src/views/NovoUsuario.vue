@@ -41,21 +41,25 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data: function() {
     return {
       usuario: {
-        nome: '',
-        email: '',
-        password: ''
-      }
-    }
+        nome: "",
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
     enviarFormulario() {
-      console.log(this.usuario)
-    }
-  }
+      axios
+        .post("http://localhost:8000/auth/register", this.usuario)
+        .then((response) => console.log(response))
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>
 
@@ -97,7 +101,7 @@ export default {
     font-weight: bold;
     margin-top: 16px;
     cursor: pointer;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &:hover {
       background: #00b685;
