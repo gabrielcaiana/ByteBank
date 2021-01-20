@@ -1,8 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "./routes";
+import http from "@/http"
 
 Vue.use(VueRouter);
+Vue.prototype.$http = http
 
 const router = new VueRouter({
   mode: "history",

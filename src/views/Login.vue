@@ -2,6 +2,7 @@
   <div class="container">
     <form class="form" @submit.prevent="efetuarLogin">
       <h1 class="form__title">Faça o login</h1>
+      <p class="form__error">{{usuario.message}}</p>
 
       <div class="form__form-group">
         <label class="form__form-group__label" for="email">Email</label>
@@ -37,19 +38,19 @@
 </template>
 
 <script>
-import http from "@/http/index";
 export default {
   data() {
     return {
       usuario: {
         email: "",
         senha: "",
+        message: ''
       },
     };
   },
   methods: {
     efetuarLogin() {
-      http
+      this.$http
         .post("auth/login", this.usuario)
         .then((response) => {
           console.log(response);
@@ -57,7 +58,8 @@ export default {
           this.$router.push({name: 'managers'})
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.message);
+          this.usuario.message = err.response.data.message
         });
     },
   },
@@ -72,6 +74,11 @@ export default {
   &__title {
     color: #1d3557;
     margin-bottom: 20px;
+  }
+
+  &__error {
+   color: crimson;
+   font-weight: bold;
   }
 
   &__form-group {

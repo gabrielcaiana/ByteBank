@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import http from "@/http";
 export default {
   data() {
     return {
@@ -58,7 +57,7 @@ export default {
   },
   methods: {
     enviarFormulario() {
-      http
+      this.$http
         .post("auth/register", this.usuario)
         .then((response) => {
           console.log(response)
