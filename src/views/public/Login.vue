@@ -52,6 +52,9 @@ export default {
     efetuarLogin() {
       this.$store.dispatch("efetuarLogin", this.usuario)
       .then(() => this.$router.push({name: 'home'}))
+      .catch((err) => {
+        this.usuario.message = err.response.data.message
+      })
     },
   },
 };
