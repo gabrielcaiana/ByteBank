@@ -1,5 +1,5 @@
 <template>
-  <header v-if="usuarioLogado" class="header">
+  <header v-if="userLogin" class="header">
     <div class="container content">
       <ul class="header__list">
         <li class="header__list__logo">
@@ -44,14 +44,13 @@
 
 <script>
 import { logoutMixin } from "@/mixins";
+import { mapGetters } from "vuex"
 export default {
   mixins: [
     logoutMixin
   ],
   computed: {
-    usuarioLogado() {
-     return Boolean(this.$store.state.token);
-    },
+    ...mapGetters(['userLogin'])
   },
 };
 </script>
