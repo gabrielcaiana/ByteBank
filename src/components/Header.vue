@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header v-if="usuarioLogado" class="header">
     <div class="container content">
       <ul class="header__list">
         <li class="header__list__logo">
@@ -7,7 +7,7 @@
             class="header__list__item__link"
             active-class="header__list__item__link--active"
             exact
-            to="/"
+            :to="{ name: 'home' }"
           >
             <h1 class="header__list__logo--h1">ByteBank</h1>
           </router-link>
@@ -17,7 +17,7 @@
             class="header__list__item__link"
             active-class="header__list__item__link--active"
             exact
-            to="/"
+            :to="{ name: 'home' }"
           >
             Home
           </router-link>
@@ -27,27 +27,35 @@
             class="header__list__item__link"
             active-class="header__list__item__link--active"
             exact
-            to="/managers"
+            :to="{ name: 'managers' }"
           >
             Gerentes
           </router-link>
         </li>
       </ul>
+
       <a class="content__logout" href="#" @click.prevent="efetuarLogout"
         >Logout</a
       >
     </div>
   </header>
+  <p v-else></p>
 </template>
 
 <script>
 export default {
   methods: {
     efetuarLogout() {
-      localStorage.removeItem("token")
-      this.$router.push({name: 'login'})
-    }
-  }
+      localStorage.removeItem("token");
+      this.$router.push({ name: "login" });
+    },
+  },
+  computed: {
+    usuarioLogado() {
+      const show = Boolean(localStorage.getItem("token"));
+      return show;
+    },
+  },
 };
 </script>
 

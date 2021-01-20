@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Manager from "../components/CardManager";
+import Manager from "../../components/CardManager";
 export default {
   components: {
     Manager,

@@ -1,17 +1,8 @@
 <template>
   <div class="container">
-    <form class="form" @submit.prevent="enviarFormulario">
-      <h1 class="form__title">Cadastre-se</h1>
-      <div class="form__form-group">
-        <label class="form__form-group__label" for="nome">Nome</label>
-        <input
-          class="form__form-group__input"
-          type="text"
-          id="nome"
-          placeholder="Digite o seu nome"
-          v-model="usuario.nome"
-        />
-      </div>
+    <form class="form" @submit.prevent="efetuarLogin">
+      <h1 class="form__title">Faça o login</h1>
+      <p class="form__error">{{ usuario.message }}</p>
 
       <div class="form__form-group">
         <label class="form__form-group__label" for="email">Email</label>
@@ -35,10 +26,12 @@
         />
       </div>
 
-      <button class="form__register" type="submit">Cadastrar</button>
+      <button class="form__login" type="submit">Entrar</button>
 
-      <router-link :to="{ name: 'login' }">
-        <button class="form__back" type="submit">Voltar</button>
+      <router-link :to="{ name: 'novo-usuario' }">
+        <p class="form__register">
+          Ainda não tem uma conta? <b>cadastre-se agora mesmo!</b>
+        </p>
       </router-link>
     </form>
   </div>
@@ -49,21 +42,23 @@ export default {
   data() {
     return {
       usuario: {
-        nome: "",
         email: "",
         senha: "",
+        message: "",
       },
     };
   },
   methods: {
-    enviarFormulario() {
+    efetuarLogin() {
       this.$http
-        .post("auth/register", this.usuario)
+        .post("auth/login", this.usuario)
         .then((response) => {
-          console.log(response)
-          this.$router.push({name: 'login'})
+          localStorage.setItem("token", response.data.access_token);
+          this.$router.push({ name: "home" });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          this.usuario.message = err.response.data.message;
+        });
     },
   },
 };
@@ -73,10 +68,16 @@ export default {
 .form {
   width: 100%;
   padding: 24px 0;
+  margin-top: 25%;
 
   &__title {
     color: #1d3557;
     margin-bottom: 20px;
+  }
+
+  &__error {
+    color: crimson;
+    font-weight: bold;
   }
 
   &__form-group {
@@ -98,7 +99,8 @@ export default {
     }
   }
 
-  &__register {
+  &__login {
+    width: 100px;
     padding: 12px 16px;
     border: none;
     border-radius: 4px;
@@ -114,17 +116,10 @@ export default {
     }
   }
 
-  &__back {
-    padding: 12px 16px;
-    border: 1px solid #06d6a0;
-    border-radius: 4px;
-    color: #06d6a0;
-    background: #fff;
-    font-weight: bold;
-    margin-top: 16px;
-    margin-left: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
+  &__register {
+    font-size: 16px;
+    margin-top: 32px;
+    color: #1d3557;
   }
 }
 </style>

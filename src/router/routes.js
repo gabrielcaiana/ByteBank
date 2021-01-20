@@ -1,18 +1,14 @@
-import Home from "../views/Home.vue";
-import Managers from "../views/Managers.vue";
-import NovoUsuario from "../views/NovoUsuario"
-import Login from "../views/Login";
+import Home from "../views/private/Home.vue";
+import Managers from "../views/private/Managers";
+import NovoUsuario from "../views/public/NovoUsuario";
+import Login from "../views/public/Login";
+import Index from '../views/private/Index'
 
 export default [
   {
-    path: "/",
-    name: "home",
-    component: Home,
-  },
-  {
-    path: "/managers",
-    name: "managers",
-    component: Managers,
+    path: "/login",
+    name: "login",
+    component: Login,
   },
   {
     path: "/cadastre-se",
@@ -20,8 +16,19 @@ export default [
     component: NovoUsuario,
   },
   {
-    path: "/login",
-    name: "login",
-    component: Login
+    path: "/index",
+    component: Index,
+    children: [
+      {
+        path: "/",
+        name: "home",
+        component: Home,
+      },
+      {
+        path: "/managers",
+        name: "managers",
+        component: Managers,
+      },
+    ],
   },
 ];
