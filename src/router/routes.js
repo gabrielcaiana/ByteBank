@@ -1,13 +1,8 @@
-import Home from "../views/private/Home.vue";
-import Managers from "../views/private/Managers";
-import NovoUsuario from "../views/public/NovoUsuario";
-import Login from "../views/public/Login";
-
 export default [
   {
     path: "/",
     name: "login",
-    component: Login,
+    component: () => import("../views/public/Login"),
     meta: {
       public: true,
     },
@@ -15,7 +10,7 @@ export default [
   {
     path: "/cadastre-se",
     name: "novo-usuario",
-    component: NovoUsuario,
+    component: () => import("../views/public/NovoUsuario"),
     meta: {
       public: true,
     },
@@ -24,11 +19,11 @@ export default [
   {
     path: "/home",
     name: "home",
-    component: Home,
+    component: () => import("../views/private/Home.vue"),
   },
   {
     path: "/managers",
     name: "managers",
-    component: Managers,
+    component: () => import("../views/private/Managers"),
   },
 ];
