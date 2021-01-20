@@ -1,7 +1,7 @@
 <template>
   <div class="cardManager">
     <p class="cardManager__name">{{ nome }}</p>
-    <span class="cardManager__clients">{{ clientesQtd }}</span>
+    <span class="cardManager__clients">{{ agency }}</span>
   </div>
 </template>
 
@@ -12,8 +12,8 @@ export default {
       type: String,
       required: true,
     },
-    clientesQtd: {
-      type: String,
+    agency: {
+      type: Number,
       required: true,
     },
   },

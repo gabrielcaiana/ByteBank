@@ -3,10 +3,10 @@
     <h1 class="manager__title">Gerentes</h1>
     <div class="manager">
       <Manager
-        v-for="(manager, index) in managers"
+        v-for="(gerente, index) in gerentes"
         :key="index"
-        :nome="manager.name"
-        :clientesQtd="manager.clientesQtd"
+        :nome="gerente.nome"
+        :agency="gerente.agencia"
       />
     </div>
   </div>
@@ -21,14 +21,18 @@ export default {
 
   data: function() {
     return {
-      managers: [
-        { name: "Gabriel Caiana", clientesQtd: "1500" },
-        { name: "Gisely Almeida", clientesQtd: "1000" },
-        { name: "Polly Caiana", clientesQtd: "600" },
-        { name: "Sara Caiana", clientesQtd: "2500" },
-        { name: "Lupe Caiana", clientesQtd: "200" }
-      ],
+      gerentes: [],
     };
+  },
+  mounted() {
+    this.$http
+      .get("gerentes")
+      .then((response) => {
+        this.gerentes = response.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
