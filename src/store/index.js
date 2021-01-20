@@ -5,7 +5,7 @@ import http from "@/http";
 Vue.use(Vuex);
 
 const state = {
-  token: null,
+  token: localStorage.getItem("token") || "",
   usuario: {},
 };
 
@@ -17,6 +17,7 @@ const mutations = {
   LOGOUT_USER(state) {
     state.token = null;
     state.usuario = {};
+    localStorage.removeItem('token')
   },
 };
 
@@ -30,6 +31,7 @@ const actions = {
             token: response.data.access_token,
             usuario: response.data.user,
           });
+          localStorage.setItem('token', response.data.access_token)
           resolve(response.data);
         })
         .catch((err) => {
