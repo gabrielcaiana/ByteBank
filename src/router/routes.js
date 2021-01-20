@@ -5,18 +5,24 @@ import Login from "../views/public/Login";
 
 export default [
   {
-    path: "/login",
+    path: "/",
     name: "login",
     component: Login,
+    meta: {
+      public: true,
+    },
   },
   {
     path: "/cadastre-se",
     name: "novo-usuario",
     component: NovoUsuario,
+    meta: {
+      public: true,
+    },
   },
 
   {
-    path: "/",
+    path: "/home",
     name: "home",
     component: Home,
   },
