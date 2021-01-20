@@ -52,8 +52,7 @@ export default {
   },
   computed: {
     usuarioLogado() {
-      const show = Boolean(localStorage.getItem("token"));
-      return show;
+     return Boolean(localStorage.getItem("token"));
     },
   },
 };

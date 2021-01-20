@@ -53,7 +53,10 @@ export default {
       this.$http
         .post("auth/login", this.usuario)
         .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
+          this.$store.commit("defineUserLogin", {
+            token: response.data.access_token,
+            usuario: response.data.user,
+          });
           this.$router.push({ name: "home" });
         })
         .catch((err) => {
