@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import http from "@/http";
 export default {
   data() {
     return {
@@ -58,8 +58,8 @@ export default {
   },
   methods: {
     enviarFormulario() {
-      axios
-        .post("http://localhost:8000/auth/register", this.usuario)
+      http
+        .post("auth/register", this.usuario)
         .then((response) => {
           console.log(response)
           this.$router.push({name: 'login'})
